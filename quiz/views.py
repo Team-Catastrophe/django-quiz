@@ -1,5 +1,5 @@
 import random
-
+import csv
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
@@ -191,10 +191,11 @@ class QuizTake(FormView):
         if self.question.fill == False:
             guess = form.cleaned_data['answers']
             is_correct = self.question.check_if_correct(guess)
+            typestring="MCQ"
         else:
             ans = form.cleaned_data['answer']
             guess=""
-            
+            typestring="FIB"
             if ans == self.question.get_fillanswer():
                 is_correct = True
             else:
@@ -203,9 +204,15 @@ class QuizTake(FormView):
         if is_correct is True:
             self.sitting.add_to_score(1)
             progress.update_score(self.question, 1, 1)
+            with open('user.csv', 'a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow([typestring,"y"])
         else:
             self.sitting.add_incorrect_question(self.question)
             progress.update_score(self.question, 0, 1)
+            with open('user.csv', 'a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow([typestring,"n"])
 
         if self.quiz.answers_at_end is not True:
             self.previous = {'previous_answer': guess,
