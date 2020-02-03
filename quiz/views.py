@@ -1,5 +1,6 @@
 import random
 import csv
+import numpy as np
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
@@ -12,6 +13,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from fillintheblanks.models import FillAnswer
+
+from prediction import predict
 
 class QuizMarkerMixin(object):
     @method_decorator(login_required)
@@ -207,15 +210,24 @@ class QuizTake(FormView):
             with open('user.csv', 'a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([typestring,"y"])
+            X_test = np.full((1,1),1)
         else:
             self.sitting.add_incorrect_question(self.question)
             progress.update_score(self.question, 0, 1)
             with open('user.csv', 'a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([typestring,"n"])
+            X_test = np.full((1,1),0)
+        pred_val = predict.predict_result(X_test)
+        print(pred_val)
+        if pred_val[0] == 1:
+            message_string = 'Not a Guess.'
+        else:
+            message_string = 'This seems to be a guesswork we wont be rewarding you points.'
 
         if self.quiz.answers_at_end is not True:
             self.previous = {'previous_answer': guess,
+                             'message':message_string,
                              'previous_outcome': is_correct,
                              'previous_question': self.question,
                              'answers': self.question.get_answers(),

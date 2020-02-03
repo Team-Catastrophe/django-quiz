@@ -21,7 +21,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'index' %}">Quiz App</a>
+    <a class="navbar-brand" href="{% url 'index' %}">My Evaluator</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
       <ul class="navbar-nav rm-auto">
         {% if user.is_authenticated %}
         <li class="nav-tem" style="color:gray">
-          <a href="{% url 'quiz_index' %}" class="nav-link">Quizzes</a>
+          <a href="{% url 'quiz_index' %}" class="nav-link">Quizes</a>
         </li>
         <li class="nav-tem" style="color:gray">
             <a href="{% url 'quiz_progress' %}" class="nav-link">Progress</a>

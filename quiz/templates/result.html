@@ -15,7 +15,8 @@
   <p>Your answer was
 	<strong>
 	  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
-	</strong>
+  </strong>
+  <p>{{ previous.message }} </p>
   </p>
   {% include 'correct_answer.html' %}
   <p><strong>{% trans "Explanation" %}:</strong></p>
