@@ -188,12 +188,13 @@ class QuizTake(FormView):
 
     def form_valid_user(self, form):
         progress, c = Progress.objects.get_or_create(user=self.request.user)
-        guess = form.cleaned_data['answers']
-        
         if self.question.fill == False:
+            guess = form.cleaned_data['answers']
             is_correct = self.question.check_if_correct(guess)
         else:
-            if guess:
+            ans = form.cleaned_data['answer']
+            guess=""
+            if ans == 'wwww':
                 is_correct = True
             else:
                 is_correct = False
