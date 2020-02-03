@@ -11,7 +11,7 @@ from .models import Quiz, Category, Progress, Sitting, Question
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from fillintheblanks.models import FillAnswer
 
 class QuizMarkerMixin(object):
     @method_decorator(login_required)
@@ -194,7 +194,8 @@ class QuizTake(FormView):
         else:
             ans = form.cleaned_data['answer']
             guess=""
-            if ans == 'wwww':
+            
+            if ans == self.question.get_fillanswer():
                 is_correct = True
             else:
                 is_correct = False

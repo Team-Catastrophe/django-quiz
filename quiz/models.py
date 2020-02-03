@@ -151,6 +151,7 @@ class Quiz(models.Model):
 
     def anon_q_data(self):
         return str(self.id) + "_data"
+    
 
 
 # progress manager

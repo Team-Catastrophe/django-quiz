@@ -45,6 +45,9 @@ class FillQuestion(Question):
     def answer_choice_to_string(self, guess):
         return Answer.objects.get(id=guess).content
 
+    def get_fillanswer(self):
+        answer = FillAnswer.objects.get(question=self)
+        return answer.content
 
     class Meta:
         verbose_name = "Fill in the blank Question"
