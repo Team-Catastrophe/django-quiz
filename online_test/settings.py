@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'fillintheblanks',
     'mcq',
     'quiz',
+    'forum',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

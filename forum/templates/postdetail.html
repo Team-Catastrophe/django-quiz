@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Question</h3>
+{{ obj.title }}<br>
+<h3>Answers</h3>
+{% for ans in ans %}
+{{ ans.answer }}<br>
+{% endfor %}
+{% endblock %}
