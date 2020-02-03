@@ -70,7 +70,9 @@
 	  </li>
 	{% endfor %}
 
-<input type="text" name="answer">
+	{% if question.fill %}
+	<input type="text" name="answer">
+	{% endif %}
 
   </ul>
     {% if progress.0|add:1 == progress.1 %}

@@ -1,5 +1,5 @@
 from django import forms
-from django.forms.widgets import RadioSelect
+from django.forms.widgets import RadioSelect,SelectMultiple,CheckboxSelectMultiple
 from .models import Question
 
 class QuestionForm(forms.Form):
