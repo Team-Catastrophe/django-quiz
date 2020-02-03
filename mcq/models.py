@@ -9,7 +9,7 @@ ANSWER_ORDER_OPTIONS = (
 
 
 class MCQQuestion(Question):
-
+    fill        = models.BooleanField(default=False)
     answer_order = models.CharField(
         max_length=30, null=True, blank=True,
         choices=ANSWER_ORDER_OPTIONS,

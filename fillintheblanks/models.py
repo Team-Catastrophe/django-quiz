@@ -11,6 +11,7 @@ ANSWER_ORDER_OPTIONS = (
 
 
 class FillQuestion(Question):
+    fill        = models.BooleanField(default=True)
     answer_order = models.CharField(
         max_length=30, null=True, blank=True,
         choices=ANSWER_ORDER_OPTIONS,
@@ -20,7 +21,7 @@ class FillQuestion(Question):
         verbose_name="Answer Order")
 
     def check_if_correct(self, guess):
-        answer = Answer.objects.get(id=guess)
+        answer = FillAnswer.objects.get(id=guess)
 
         if answer.correct is True:
             return True
