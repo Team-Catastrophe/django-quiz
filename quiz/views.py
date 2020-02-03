@@ -219,9 +219,13 @@ class QuizTake(FormView):
                 writer.writerow([typestring,"n"])
             X_test = np.full((1,1),0)
         pred_val = predict.predict_result(X_test)
-        print(pred_val)
+        #print(pred_val)
         if pred_val[0] == 1:
             message_string = 'Not a Guess.'
+            obj = Progress.objects.get(user=self.sitting.user)
+            
+            obj.credit+=1
+            obj.save()
         else:
             message_string = 'This seems to be a guesswork we wont be rewarding you points.'
 
@@ -250,7 +254,10 @@ class QuizTake(FormView):
         }
 
         self.sitting.mark_quiz_complete()
-
+        
+        obj = Progress.objects.get(user=self.sitting.user)    
+        obj.quiz_no+=1
+        obj.save()
         if self.quiz.answers_at_end:
             results['questions'] =\
                 self.sitting.get_questions(with_answers=True)

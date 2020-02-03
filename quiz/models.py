@@ -180,6 +180,10 @@ class Progress(models.Model):
 
     wrong_answer = models.CharField(max_length=10, verbose_name=_('Wrong Answers')) 
 
+    credit  =   models.IntegerField(default=0)
+
+    quiz_no =   models.IntegerField()
+    
     objects = ProgressManager()
 
     class Meta:
