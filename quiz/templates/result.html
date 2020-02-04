@@ -7,7 +7,10 @@
 {% block description %} {% trans "Exam Results for" %} {{ quiz.title }} {% endblock %}
 
 {% block content %}
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <br>
   {% if previous.answers %}
 
   <p class="muted"><small>{% trans "The previous question" %}:</small></p>
@@ -16,6 +19,7 @@
 	<strong>
 	  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
   </strong>
+  <h2>Machine Learning model prediction:</h2>
   <p>{{ previous.message }} </p>
   </p>
   {% include 'correct_answer.html' %}
@@ -26,7 +30,10 @@
   <hr>
 
   {% endif %}
+  </div>
 
+  <div class="col-sm-5 offset-1">
+    <br>
   {% if max_score %}
 
   <div>
@@ -95,6 +102,7 @@
   {% endfor %}
 
   {% endif %}
-
-
+  </div>
+</div>
+</div>
 {% endblock %}

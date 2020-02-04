@@ -2,10 +2,74 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>Welcome, {{ user.username}}</h1>    
-    <p>Username: {{user.username}}</p>
-    <p>Name: {{user.first_name}} {{user.last_name}}</p>
-    <p>Email: {{user.email}}</p>
+  
+    <section style="background-color:rgb(245,245,245)
+    !important; ">
+        <div class="container">
+          <div class="row">
+            <div class="col shadow-lg" style="margin: 20px; background-color: white; padding: 20px; border-radius: 20px; box-shadow: grey!important;">
+            <h5>Welcome, <span style="color: rgb(255,94,0);">{{ user.username}}</span></h5>      <hr><h4 style="margin-bottom: 8px;">Personal Information</h4>
+                <p><b>Username: </b> {{user.username}}</p>
+                <p><b>Name:</b> {{user.first_name}} {{user.last_name}}</p>
+                <p><b>Email:</b> {{user.email}}</p>
+            </div>
+            <div class="col shadow-lg overflow-auto" style="margin: 20px; background-color: white; padding: 20px;  border-radius: 20px;">
+                <div >
+                    <h4 class="text-center" style="font-size: 170px; color: rgb(0,152,216);">{{ obj.quiz_no }}</h4>
+                </div>
+                <center> <h4>Quiz Count</h4> </center>
+            </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+              <div class="col shadow-lg" style="margin: 20px; background-color: white; padding: 20px; border-radius: 20px; box-shadow: grey!important;">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" style="height: 210px;">
+                      <div class="carousel-item active">
+                        <center>
+                        <p style="font-size: 100px!important; color: #AFD275;">{{ obj.credit }}</p>
+                        <p>Credit Score</p>
+                        </center>
+                      </div>
+                      {% for cat in cat %}
+                      <div class="carousel-item">
+                          <center><br><br>
+                        <p style="font-size: 40px!important; color: rgb(0,152,216);">{{ cat.category }}</p>  
+                        <p style="color:#AFD275">Category</p>
+                    </center>
+                    </div>
+                    {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev"  style="background-color: rgba(0,0,0,.3)!important;" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="background-color: rgba(0,0,0,.3)!important;">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+              </div>
+              <div class="col shadow-lg overflow-auto" style="margin: 20px; background-color: white; padding: 20px;  border-radius: 20px;">
+                <br>
+                <div class="row">
+                  <div class="col-sm-6 offset-3"><center> <h4>Activities</h4> </center></div>
+                </div>
+                <br>
+                <br>
+                <br>
+                  <div class="row">
+                     <div class="col-sm-5 offset-1"><a class="btn btn-outline-info" href="{% url 'quiz_progress' %}">Track your progress</a></div>
+                     <div class="col-sm-4 offset-1"><a class="btn btn-outline-info" href="{% url 'quiz_index' %}">Take more quiz</a></div>
+                  </div>
+              </div>
+              </div>
+          </div>
+          <br>
+          <br>
+          <br>
+        </section>
 {% endif %}
-    
+
 {% endblock  %}

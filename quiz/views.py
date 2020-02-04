@@ -273,7 +273,9 @@ class QuizTake(FormView):
 
 
 def index(request):
-    return render(request, 'index.html', {})
+    obj = Progress.objects.get(user=request.user)
+    cat = Category.objects.all()
+    return render(request, 'index.html', {'obj':obj,'cat':cat})
 
 
 def login_user(request):

@@ -4,9 +4,11 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
+<div class="container">
+<br>
 <h2>{% trans "List of quizzes" %}</h2>
     {% if quiz_list %}
-		<table class="table table-bordered table-striped">
+		<table class="table table-responsive-lg table-bordered table-striped">
 
 		  <thead>
 			<tr>
@@ -28,7 +30,7 @@
 			  <td>{{ quiz.exam_paper }}</td>
 			  <td>{{ quiz.single_attempt }}</td>
 			  <td>
-				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
+				<a class="btn btn-warning" href="{% url 'quiz_start_page' slug=quiz.url %}">
 				  {% trans "View details" %}
 				</a>
 			</tr>
@@ -40,5 +42,6 @@
 
 	{% else %}
         <p>{% trans "There are no available quizzes" %}.</p>
-    {% endif %}
+	{% endif %}
+</div>
 {% endblock %}

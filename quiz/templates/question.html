@@ -7,7 +7,7 @@
 {% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
 
 {% block content %}
-
+<div class="container">
 {% if previous.answers %}
 
   <p class="muted"><small>{% trans "The previous question" %}:</small></p>
@@ -52,7 +52,7 @@
   <small class="muted">{% trans "Question category" %}:</small>
   <strong>{{ question.category }}</strong>
 </p>
-
+<pre>Question :</pre>
 <p class="lead">{{ question.content }}</p>
 
 {% if question.figure %}
@@ -71,10 +71,12 @@
 	{% endfor %}
 
 	{% if question.fill %}
+	<pre>Answer :</pre>
 	<input type="text" name="answer">
 	{% endif %}
 
   </ul>
+  <br>
     {% if progress.0|add:1 == progress.1 %}
     <input type="submit" value={% trans "Submit" %} class="btn btn-large btn-block btn-warning" >
     {% else %}
@@ -86,5 +88,5 @@
 
 <hr>
 
-
+</div>
 {% endblock %}
