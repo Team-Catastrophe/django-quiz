@@ -49,4 +49,3 @@ It is django based quiz app for multiple choice questions.
   
 # django-quiz
 # django-quiz
-# django-quiz
