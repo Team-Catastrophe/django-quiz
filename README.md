@@ -48,4 +48,3 @@ It is django based quiz app for multiple choice questions.
   Reference link to the quiz app repo is [here](https://github.com/tomwalker/django_quiz)
   
 # django-quiz
-# django-quiz
